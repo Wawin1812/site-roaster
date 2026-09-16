@@ -1,5 +1,4 @@
-// simple-wappalyzer has no published TypeScript types; this ambient
-// declaration covers only the surface area this project actually uses.
+// Minimal declaration for the package surface used here.
 declare module 'simple-wappalyzer' {
   export interface WappalyzerCategory {
     id?: number;

@@ -1,5 +1,4 @@
-// Mirrors the shape of the JSON report returned by the server's
-// POST /api/analyze endpoint (see server/src/types/domain.ts).
+// Types for the server's analysis response.
 
 export type Severity = 'critical' | 'warning' | 'info';
 export type Grade = 'A' | 'B' | 'C' | 'D' | 'F';

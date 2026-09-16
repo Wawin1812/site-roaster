@@ -2,12 +2,7 @@ import semver from 'semver';
 import type { Grade, Technology, TechnologyInsight } from '../types/domain.js';
 import { LIBRARY_ADVISORIES } from './libraryAdvisories.js';
 
-/**
- * Sarcastic, human-toned one-liner summarizing the overall grade. Purely a
- * tone/copy layer on top of already-accurate findings — it never changes
- * what was actually found, just how the headline reads in "Brutal Roast"
- * mode on the client.
- */
+/** Build the grade headline shown in Brutal Roast mode. */
 export function buildRoastHeadline(grade: Grade, overallScore: number): string {
   switch (grade) {
     case 'A':
@@ -24,11 +19,7 @@ export function buildRoastHeadline(grade: Grade, overallScore: number): string {
   }
 }
 
-// Best-effort curated list of technologies widely considered "old-school" or
-// legacy even when they're not carrying a known CVE at the moment — keyed by
-// the wappalyzer slug. Coverage is intentionally small and well-reasoned
-// rather than exhaustive; anything not listed here just falls through to a
-// more generic verdict below.
+// Curated hints for legacy technologies.
 const LEGACY_TECH_HINTS: Record<string, { note: string; roast: string }> = {
   wordpress: {
     note: 'WordPress core itself is actively maintained, but the platform is a frequent target due to third-party plugin/theme vulnerabilities. Worth confirming plugins and the core version are current.',
@@ -68,10 +59,7 @@ const LEGACY_TECH_HINTS: Record<string, { note: string; roast: string }> = {
   }
 };
 
-// Categories where a technology being detectable at all is itself the
-// finding: these are typically only visible because a response header or
-// server banner disclosed them, which is free reconnaissance for an
-// attacker (server software, language runtime, OS, reverse proxy, etc.).
+// Technology categories exposed by headers or passive backend fingerprinting.
 const EXPOSURE_CATEGORIES = new Set([
   'Web servers',
   'Reverse proxies',
@@ -80,13 +68,7 @@ const EXPOSURE_CATEGORIES = new Set([
   'Web frameworks'
 ]);
 
-/**
- * Produces a professional `note` and a sarcastic `roast` verdict for a
- * single detected technology, checking (in order): known-vulnerable/EOL
- * library advisories, curated "old-school tech" hints, passive
- * backend/API fingerprinting exposure, then falling back to a neutral
- * "nothing remarkable" verdict.
- */
+/** Add professional and roast copy to one detected technology. */
 export function buildTechInsight(tech: Technology): TechnologyInsight {
   const advisory = LIBRARY_ADVISORIES[tech.slug];
   if (advisory) {

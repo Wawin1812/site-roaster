@@ -1,5 +1,3 @@
-// Shared types used across the analyze pipeline (tech detection, security
-// checks, performance, and the final aggregated report).
 
 export interface Technology {
   name: string;
@@ -10,11 +8,6 @@ export interface Technology {
   website?: string;
 }
 
-// A detected technology annotated with a per-item verdict: whether it's a
-// known-vulnerable/EOL library, a generally "old-school"/legacy choice, or
-// something that's only visible at all because it leaked via response
-// headers (passive backend fingerprinting). `note` is the professional
-// phrasing, `roast` is the sarcastic one for Brutal Roast mode.
 export interface TechnologyInsight extends Technology {
   note: string;
   roast: string;

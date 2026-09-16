@@ -1,7 +1,4 @@
-// Curated list of known-vulnerable / end-of-life client-side libraries.
-// `minSafeVersion` = null means "any version is a concern" (e.g. EOL projects).
-// Sources: npm advisories / vendor EOL notices, kept intentionally small and
-// well-sourced rather than exhaustive.
+// Curated client-library advisories used by the security checks.
 export interface LibraryAdvisory {
   minSafeVersion: string | null;
   reason: string;

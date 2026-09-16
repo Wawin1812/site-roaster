@@ -5,7 +5,7 @@ const PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed
 const PSI_TIMEOUT_MS = 25_000;
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'] as const;
 
-// Minimal shape of the PageSpeed Insights v5 response we actually read.
+// Only model fields used by the report.
 interface PsiAudit {
   displayValue?: string;
 }
@@ -21,15 +21,7 @@ interface PsiResponse {
   };
 }
 
-/**
- * Fetches Lighthouse category scores from the Google PageSpeed Insights API
- * for the given URL. PSI itself fetches and renders the page on Google's
- * side (not ours), so this does not need to go through safeFetch/ssrfGuard.
- *
- * Fails soft: PSI is rate-limited (especially without an API key) and can be
- * slow or flaky, so any failure here should not take down the rest of the
- * report. On error, returns { available: false, reason }.
- */
+/** Fetch Lighthouse scores; failures are non-fatal to the report. */
 export async function getPerformanceReport(targetUrl: string): Promise<PerformanceReport> {
   const apiKey = process.env.GOOGLE_PSI_API_KEY;
 

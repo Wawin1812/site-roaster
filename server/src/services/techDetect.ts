@@ -9,11 +9,7 @@ export interface DetectTechnologiesInput {
   headers: Headers;
 }
 
-/**
- * Detects the technology stack (frameworks, CMS, server, CDN, analytics,
- * etc.) of a page using simple-wappalyzer, fed with data we've already
- * fetched via safeFetch (no extra network calls, no headless browser).
- */
+/** Detect technologies from the HTML and headers already fetched. */
 export async function detectTechnologies({ url, html, statusCode, headers }: DetectTechnologiesInput): Promise<Technology[]> {
   const applications = await wappalyzer({
     url,
@@ -34,8 +30,7 @@ export async function detectTechnologies({ url, html, statusCode, headers }: Det
     .sort((a, b) => b.confidence - a.confidence);
 }
 
-// node-fetch Headers -> plain object of lower-cased header names to string
-// values, the shape simple-wappalyzer expects.
+// Convert node-fetch headers to the shape simple-wappalyzer expects.
 function normalizeHeaders(headers: Headers): Record<string, string> {
   const plain: Record<string, string> = {};
   for (const [key, value] of headers.entries()) {
@@ -43,4 +38,3 @@ function normalizeHeaders(headers: Headers): Record<string, string> {
   }
   return plain;
 }
-

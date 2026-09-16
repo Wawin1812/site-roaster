@@ -19,11 +19,7 @@ export interface BuildReportInput {
   performance: PerformanceReport;
 }
 
-/**
- * Combines the security score, detected technologies, and PageSpeed Insights
- * scores into a single overall grade (A-F) plus a consolidated, ranked list
- * of "roast" suggestions a reader can act on.
- */
+/** Combine findings, performance, and technologies into one report. */
 export function buildReport({ finalUrl, technologies, security, performance }: BuildReportInput): AnalysisReport {
   const overallScore = computeOverallScore(security, performance);
   const grade = scoreToGrade(overallScore);
@@ -44,9 +40,7 @@ export function buildReport({ finalUrl, technologies, security, performance }: B
 }
 
 function computeOverallScore(security: SecurityResult, performance: PerformanceReport): number {
-  // Security posture matters most for a "roast" tool; performance is a
-  // secondary signal and is weighted down (and skipped entirely) when PSI
-  // was unavailable, so a PSI outage never tanks an otherwise solid report.
+  // Security carries more weight; unavailable PSI data does not reduce the score.
   if (!performance.available) {
     return Math.round(security.score);
   }

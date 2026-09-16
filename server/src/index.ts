@@ -15,9 +15,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// The analyze route makes outbound requests to arbitrary user-supplied
-// URLs, so it gets its own tighter rate limit to protect against abuse
-// (e.g. using this server as an SSRF/DoS proxy against third parties).
+// Limit the SSRF-capable analysis route.
 const analyzeLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 20,

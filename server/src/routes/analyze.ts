@@ -22,9 +22,7 @@ analyzeRouter.post('/', async (req: Request, res: Response) => {
     const report = await withTimeout(analyze((url as string).trim()), ANALYZE_TIMEOUT_MS, 'Analysis timed out');
     return res.json(report);
   } catch (err) {
-    // Anything that reaches here is either a fetch/SSRF-guard failure or an
-    // unexpected error; neither should ever crash the server or leak
-    // internals to the client.
+    // Do not expose unexpected server details to the client.
     const message = err instanceof Error ? err.message : 'Failed to analyze URL';
     return res.status(502).json({ error: message });
   }
@@ -53,10 +51,7 @@ async function analyze(url: string): Promise<AnalysisReport> {
   return buildReport({ finalUrl, technologies, security, performance });
 }
 
-// Basic, cheap validation done before any network access. The deep SSRF
-// checks (DNS resolution, private/reserved IP blocking) live in
-// ssrfGuard.ts/safeFetch.ts and run regardless of what happens here.
-// Exported so it can be unit tested directly without spinning up a server.
+// Cheap validation before DNS and network checks.
 export function validateUrl(url: unknown): string | null {
   if (!url || typeof url !== 'string') {
     return 'Missing required "url" field (string).';
