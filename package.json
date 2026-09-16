@@ -1,0 +1,16 @@
+{
+  "name": "site-roaster",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Analyze a website's tech stack, security posture, and performance, then get an accurate report with improvement suggestions.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build:client": "npm run build --workspace=client",
+    "start": "npm run start --workspace=server"
+  }
+}

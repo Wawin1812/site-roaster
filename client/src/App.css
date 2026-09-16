@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1a1a1a;
+}
+
+.app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.header p {
+  color: #555;
+  margin-top: 0;
+}
+
+.url-form {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.url-form input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.url-form button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background: #e2492c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.url-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-banner {
+  background: #fdecea;
+  color: #a12a1a;
+  border: 1px solid #f5c2ba;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.tone-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tone-btn {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tone-btn.active {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+.grade-roast {
+  color: #a12a1a;
+  font-style: italic;
+  margin-top: 0.35rem;
+  max-width: 40rem;
+}
+
+.grade-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.grade {
+  font-size: 2.5rem;
+  font-weight: 700;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.grade-A { background: #2e8b57; }
+.grade-B { background: #6aa84f; }
+.grade-C { background: #e6b800; }
+.grade-D { background: #e2762c; }
+.grade-F { background: #c0392b; }
+
+.grade-score {
+  font-weight: 600;
+}
+
+.grade-url {
+  color: #666;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.panel {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: #777;
+}
+
+.tech-list, .findings-list, .perf-scores {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.tech-list li:last-child {
+  border-bottom: none;
+}
+
+.tech-header {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.tech-name {
+  font-weight: 600;
+}
+
+.tech-version {
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.tech-categories {
+  color: #888;
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+.tech-note {
+  color: #555;
+  font-size: 0.88rem;
+  margin-top: 0.3rem;
+}
+
+.findings-list li {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+}
+
+.findings-list li:last-child {
+  border-bottom: none;
+}
+
+.severity-badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  color: white;
+  white-space: nowrap;
+}
+
+.severity-critical .severity-badge {
+  background: #c0392b;
+}
+
+.severity-warning .severity-badge {
+  background: #e0912c;
+}
+
+.severity-info .severity-badge {
+  background: #4a7ab5;
+}
+
+.finding-title {
+  font-weight: 600;
+}
+
+.finding-advice {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+.perf-scores li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.perf-scores li:last-child {
+  border-bottom: none;
+}
+
+.perf-value {
+  font-weight: 700;
+}
