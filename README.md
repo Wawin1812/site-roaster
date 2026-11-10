@@ -7,6 +7,8 @@ Analyze a public website's stack, security headers, and PageSpeed signals, then 
 - App: [website-roaster.netlify.app](https://website-roaster.netlify.app/)
 - API health: [site-roaster.onrender.com/api/health](https://site-roaster.onrender.com/api/health)
 - Source: [github.com/Wawin1812/site-roaster](https://github.com/Wawin1812/site-roaster)
+- Portfolio: [wawin-sathyamoorthy.netlify.app](https://wawin-sathyamoorthy.netlify.app/)
+- Resume (PDF): [wawin-sathyamoorthy.netlify.app/resume](https://wawin-sathyamoorthy.netlify.app/resume)
 
 ## Stack
 
